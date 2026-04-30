@@ -40,7 +40,7 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
       {
          GUI.Box( _windowRect, GUIUtil.none, GUIUtil.GetWindowBackgroundStyle() );
 
-         _windowRect = GUI.Window( WindowId, _windowRect, (GUI.WindowFunction)CreateWindowUI, "---- Translation Aggregator Options ----" );
+         _windowRect = GUI.Window( WindowId, _windowRect, (GUI.WindowFunction)CreateWindowUI, "---- 翻译聚合器选项 ----" );
 
          if( GUIUtil.IsAnyMouseButtonOrScrollWheelDownSafe )
          {
@@ -72,7 +72,7 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
                IsShown = false;
             }
 
-            GUILayout.Label( "Available Translators", ArrayHelper.Null<GUILayoutOption>() );
+            GUILayout.Label( "可用翻译器", ArrayHelper.Null<GUILayoutOption>() );
 
             // GROUP
             if( _isScrollViewSupported )
@@ -102,7 +102,7 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
                {
                   if ( e is System.NotSupportedException )
                   {
-                     XUnity.Common.Logging.XuaLogger.AutoTranslator.Warn( e, "An error occurred while calling GUILayout.BeginScrollView. Fallback mode will be used." );
+                     XUnity.Common.Logging.XuaLogger.AutoTranslator.Warn( e, "调用 GUILayout.BeginScrollView 时出错，已切换为备用显示模式。" );
                      _isScrollViewSupported = false;
                   }
                   else throw;
@@ -136,12 +136,12 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
             }
 
             GUILayout.BeginHorizontal( ArrayHelper.Null<GUILayoutOption>() );
-            GUILayout.Label( "Height", ArrayHelper.Null<GUILayoutOption>() );
+            GUILayout.Label( "高度", ArrayHelper.Null<GUILayoutOption>() );
             _viewModel.Height = Mathf.Round( GUILayout.HorizontalSlider( _viewModel.Height, 50, 300, ArrayHelper.Null<GUILayoutOption>() ) );
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal( ArrayHelper.Null<GUILayoutOption>() );
-            GUILayout.Label( "Width", ArrayHelper.Null<GUILayoutOption>() );
+            GUILayout.Label( "宽度", ArrayHelper.Null<GUILayoutOption>() );
             _viewModel.Width = Mathf.Round( GUILayout.HorizontalSlider( _viewModel.Width, 200, 1000, ArrayHelper.Null<GUILayoutOption>() ) );
             GUILayout.EndHorizontal();
 

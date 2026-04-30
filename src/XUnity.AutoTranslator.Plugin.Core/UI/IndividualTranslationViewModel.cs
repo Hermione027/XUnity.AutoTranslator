@@ -7,8 +7,8 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
 {
    class IndividualTranslationViewModel
    {
-      private string[] _notTranslated = new[] { "Not translated yet." };
-      private string[] _requestingTranslation = new[] { "Requesting translation..." };
+      private string[] _notTranslated = new[] { "尚未翻译。" };
+      private string[] _requestingTranslation = new[] { "正在请求翻译..." };
       private List<Translation> _translations;
       private TranslatorViewModel _translator;
       private bool _hasStartedTranslation;

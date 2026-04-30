@@ -1,4 +1,7 @@
-﻿### 2.1.0
+﻿## 更新记录 - Resource Redirector
+> 下方保留官方英文历史记录，后续会逐步补中文说明。
+
+### 2.1.0
  * FEATURE - Added support for latest MelonLoader and BepInEx bleeding edge builds (only for IL2CPP, use stable release for Mono), also dropped support for earlier versions!
 
 ### 2.0.0

@@ -88,12 +88,12 @@ namespace XUnity.AutoTranslator.Setup
                using( var file = new FileStream( iniInfo.FullName, FileMode.CreateNew ) )
                using( var writer = new StreamWriter( file ) )
                {
-                  writer.WriteLine( ";" + launcher.Executable.Name + " - ReiPatcher Configuration File" );
+                  writer.WriteLine( ";" + launcher.Executable.Name + " - ReiPatcher 配置文件" );
                   writer.WriteLine( ";" );
                   writer.WriteLine( "[ReiPatcher]" );
-                  writer.WriteLine( ";Directory to search for Patches" );
+                  writer.WriteLine( ";补丁搜索目录" );
                   writer.WriteLine( "PatchesDir=Patches" );
-                  writer.WriteLine( ";Directory to Look for Assemblies to Patch" );
+                  writer.WriteLine( ";需要打补丁的程序集目录" );
                   writer.WriteLine( @"AssembliesDir=..\" + launcher.Data.Name + @"\Managed" );
                   writer.WriteLine( "" );
                   writer.WriteLine( "[Launch]" );
@@ -102,12 +102,12 @@ namespace XUnity.AutoTranslator.Setup
                   writer.WriteLine( @"Directory=..\" );
                }
 
-               Console.WriteLine( "Created " + iniInfo.Name );
+               Console.WriteLine( "已创建 " + iniInfo.Name );
 
             }
             else
             {
-               Console.WriteLine( iniInfo.Name + " already exists. skipping..." );
+               Console.WriteLine( iniInfo.Name + " 已存在，跳过..." );
             }
 
             var shortcutPath = Path.GetFileNameWithoutExtension( launcher.Executable.Name ) + " (Patch and Run).lnk";
@@ -121,15 +121,15 @@ namespace XUnity.AutoTranslator.Setup
                   gamePath,
                   Path.Combine( reiPath, "ReiPatcher.exe" ) );
 
-               Console.WriteLine( "Created shortcut for " + launcher.Executable.Name );
+               Console.WriteLine( "已为 " + launcher.Executable.Name + " 创建快捷方式" );
             }
             else
             {
-               Console.WriteLine( lnkInfo.Name + " already exists. skipping..." );
+               Console.WriteLine( lnkInfo.Name + " 已存在，跳过..." );
             }
          }
 
-         Console.WriteLine( "Setup completed. Press any key to exit." );
+         Console.WriteLine( "设置完成。按任意键退出。" );
          Console.ReadKey();
       }
 
@@ -141,15 +141,15 @@ namespace XUnity.AutoTranslator.Setup
             if( !fi.Directory.Exists )
             {
                Directory.CreateDirectory( fi.Directory.FullName );
-               Console.WriteLine( "Created directory: " + fi.Directory.FullName );
+                Console.WriteLine( "已创建目录: " + fi.Directory.FullName );
             }
             System.IO.File.WriteAllBytes( fi.FullName, bytes );
-            Console.WriteLine( "Created file: " + fi.FullName );
+            Console.WriteLine( "已创建文件: " + fi.FullName );
          }
          else if( overwrite )
          {
             System.IO.File.WriteAllBytes( fi.FullName, bytes );
-            Console.WriteLine( "Updated file: " + fi.FullName );
+            Console.WriteLine( "已更新文件: " + fi.FullName );
          }
       }
 

@@ -44,7 +44,7 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
       {
          _windowRect.height = WindowHeight;
          _windowRect.width = _viewModel.Width;
-         _windowRect = GUI.Window( WindowId, _windowRect, (GUI.WindowFunction)CreateWindowUI, "---- Translation Aggregator ----" );
+         _windowRect = GUI.Window( WindowId, _windowRect, (GUI.WindowFunction)CreateWindowUI, "---- 翻译聚合器 ----" );
 
          if( GUIUtil.IsAnyMouseButtonOrScrollWheelDownSafe )
          {
@@ -91,18 +91,18 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
             var current = _viewModel.Current;
             if( current != null )
             {
-               if( GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "Copy" ) )
+               if( GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "复制" ) )
                {
                   current.CopyOriginalTextToClipboard();
                }
-               DrawTextArea( posy, _originalText, "Original Text", current.OriginalTexts );
+               DrawTextArea( posy, _originalText, "原文", current.OriginalTexts );
                posy += _viewModel.Height;
 
-               if( GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "Copy" ) )
+               if( GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "复制" ) )
                {
                   current.CopyDefaultTranslationToClipboard();
                }
-               DrawTextArea( posy, _defaultTranslation, "Default Translation", current.DefaultTranslations );
+               DrawTextArea( posy, _defaultTranslation, "默认译文", current.DefaultTranslations );
                posy += _viewModel.Height;
 
                for( int i = 0; i < current.AggregatedTranslations.Count; i++ )
@@ -113,7 +113,7 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
                      var scroller = _translationViews[ i ];
 
                      GUI.enabled = aggregatedTranslation.CanCopyToClipboard();
-                     if( GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "Copy" ) )
+                     if( GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "复制" ) )
                      {
                         aggregatedTranslation.CopyToClipboard();
                      }
@@ -130,15 +130,15 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
             else
             {
                GUI.enabled = false;
-               GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "Copy" );
+               GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "复制" );
                GUI.enabled = true;
-               DrawTextArea( posy, _originalText, "Original Text", Empty );
+               DrawTextArea( posy, _originalText, "原文", Empty );
                posy += _viewModel.Height;
 
                GUI.enabled = false;
-               GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "Copy" );
+               GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "复制" );
                GUI.enabled = true;
-               DrawTextArea( posy, _defaultTranslation, "Default Translation", Empty );
+               DrawTextArea( posy, _defaultTranslation, "默认译文", Empty );
                posy += _viewModel.Height;
 
                for( int i = 0; i < _viewModel.AvailableTranslators.Count; i++ )
@@ -149,7 +149,7 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
                      var scroller = _translationViews[ i ];
 
                      GUI.enabled = false;
-                     GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "Copy" );
+                     GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 50, posy + 5 + 1, 50, GUIUtil.LabelHeight ), "复制" );
                      GUI.enabled = true;
                      DrawTextArea(
                         posy,
@@ -166,25 +166,25 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
             var previousEnabled = GUI.enabled;
 
             GUI.enabled = _viewModel.HasPrevious();
-            if( GUI.Button( GUIUtil.R( GUIUtil.HalfComponentSpacing, posy, 75, GUIUtil.LabelHeight ), "Previous" ) )
+            if( GUI.Button( GUIUtil.R( GUIUtil.HalfComponentSpacing, posy, 75, GUIUtil.LabelHeight ), "上一条" ) )
             {
                _viewModel.MovePrevious();
             }
 
             GUI.enabled = _viewModel.HasNext();
-            if( GUI.Button( GUIUtil.R( GUIUtil.HalfComponentSpacing * 2 + 75 * 1, posy, 75, GUIUtil.LabelHeight ), "Next" ) )
+            if( GUI.Button( GUIUtil.R( GUIUtil.HalfComponentSpacing * 2 + 75 * 1, posy, 75, GUIUtil.LabelHeight ), "下一条" ) )
             {
                _viewModel.MoveNext();
             }
 
             GUI.enabled = _viewModel.HasNext();
-            if( GUI.Button( GUIUtil.R( GUIUtil.HalfComponentSpacing * 3 + 75 * 2, posy, 75, GUIUtil.LabelHeight ), "Last" ) )
+            if( GUI.Button( GUIUtil.R( GUIUtil.HalfComponentSpacing * 3 + 75 * 2, posy, 75, GUIUtil.LabelHeight ), "最新" ) )
             {
                _viewModel.MoveLatest();
             }
 
             GUI.enabled = true;
-            if( GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 75, posy, 75, GUIUtil.LabelHeight ), "Options" ) )
+            if( GUI.Button( GUIUtil.R( _viewModel.Width - GUIUtil.HalfComponentSpacing - 75, posy, 75, GUIUtil.LabelHeight ), "选项" ) )
             {
                _viewModel.IsShowingOptions = true;
             }
@@ -232,7 +232,7 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
             {
                if( e is System.NotSupportedException )
                {
-                  XUnity.Common.Logging.XuaLogger.AutoTranslator.Warn( e, "An error occurred while calling GUILayout.BeginScrollView. Fallback mode will be used." );
+                  XUnity.Common.Logging.XuaLogger.AutoTranslator.Warn( e, "调用 GUILayout.BeginScrollView 时出错，已切换为备用显示模式。" );
                   _isScrollViewSupported = false;
                }
                else throw;

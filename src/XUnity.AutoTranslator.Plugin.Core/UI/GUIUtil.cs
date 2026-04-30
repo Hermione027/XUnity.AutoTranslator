@@ -20,6 +20,21 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
       public static GUIContent none = new GUIContent( "" );
 
       public static readonly RectOffset Empty = new RectOffset { left = 0, right = 0, top = 0, bottom = 0 };
+      private static readonly string[] ChineseFontCandidates = new[]
+      {
+         "Microsoft YaHei UI",
+         "Microsoft YaHei",
+         "Noto Sans CJK SC",
+         "Noto Sans CJK JP",
+         "SimHei",
+         "SimSun",
+         "PingFang SC",
+         "Heiti SC",
+         "WenQuanYi Micro Hei",
+         "Arial Unicode MS"
+      };
+
+      private static Font _chineseFont;
 
       public static readonly GUIStyle LabelTranslation = CopyStyle( GUI.skin.label, style =>
       {
@@ -119,6 +134,44 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
          return style;
       }
 #endif
+
+      public static Font GetChineseFont()
+      {
+         if( _chineseFont != null )
+         {
+            return _chineseFont;
+         }
+
+         try
+         {
+            _chineseFont = Font.CreateDynamicFontFromOSFont( ChineseFontCandidates, 16 );
+            if( _chineseFont != null )
+            {
+               GameObject.DontDestroyOnLoad( _chineseFont );
+            }
+         }
+         catch
+         {
+         }
+
+         return _chineseFont;
+      }
+
+      public static void ApplyFont( Font font )
+      {
+         GUI.skin.font = font;
+         GUI.skin.window.font = font;
+         LabelTranslation.font = font;
+         LabelCenter.font = font;
+         LabelRight.font = font;
+         LabelRich.font = font;
+         GUI.skin.toggle.font = font;
+         GUI.skin.textField.font = font;
+         GUI.skin.textArea.font = font;
+         NoMarginButtonStyle.font = font;
+         NoMarginButtonPressedStyle.font = font;
+         NoSpacingBoxStyle.font = font;
+      }
 
       public static GUIContent CreateContent( string text )
       {

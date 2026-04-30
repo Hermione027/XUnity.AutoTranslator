@@ -1,4 +1,7 @@
-﻿### 5.6.1
+﻿## 更新记录
+> 下方保留官方英文历史记录，后续会逐步补中文说明。
+
+### 5.6.1
 * BUG FIX - Resolve hotkey unresponsiveness and GUI unstripping errors in IL2CPP (#834)
 * BUG FIX - Resolve font asset bundle loading failure in IL2CPP (#831)
 

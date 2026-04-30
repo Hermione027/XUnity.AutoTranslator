@@ -88,7 +88,7 @@ namespace XUnity.AutoTranslator.Plugin.Core.UI
          }
          catch( Exception e )
          {
-            XuaLogger.AutoTranslator.Warn( e, "GUILayout.BeginScrollView not supported. Proceeding without..." );
+            XuaLogger.AutoTranslator.Warn( e, "当前环境不支持 GUILayout.BeginScrollView，改为直接显示。" );
             _supportsScrollView = false;
          }
 
