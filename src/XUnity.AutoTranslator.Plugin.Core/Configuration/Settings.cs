@@ -25,7 +25,7 @@ namespace XUnity.AutoTranslator.Plugin.Core.Configuration
       public static readonly int MaxFailuresForSameTextPerEndpoint = 3;
       public static readonly string TranslatorsFolder = "Translators";
       public static readonly int MaxMaxCharactersPerTranslation = 2500;
-      public static readonly string DefaultLanguage = "en";
+      public static readonly string DefaultLanguage = "zh";
       public static readonly string DefaultFromLanguage = "ja";
       public static readonly string EnglishLanguage = "en";
       public static readonly string Romaji = "romaji";

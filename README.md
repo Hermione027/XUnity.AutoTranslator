@@ -237,6 +237,18 @@ IL2CPP 版本的安装方式和标准版一样，只是你需要改用这个插�
    * 没有限制。
  * [LingoCloudTranslate](https://untrack.link/https://fanyi.caiyunapp.com/)，基于彩云在线翻译服务。只支持中文、日文和英文三种语言。
    * 注册并完成免费认证后，每月前 100 万字符免费，超出部分按每百万字符 20 元计费。官方测试 token 是 `3975l6lr5pcbvidl6jl2`，注册前也可以先试用。
+ * OpenAICompatibleTranslate。用于对接 OpenAI 兼容接口的翻译器，适合你自己的兼容网关、代理服务或第三方兼容平台。
+   * 需要 `Url`、`ApiKey` 和 `Model`。
+   * 支持在 `AutoTranslatorConfig.ini` 里直接配置 `SystemPrompt` 和 `Temperature`。
+   * `Url` 既可以填根地址 `https://host`，也可以填 `https://host/v1`，或者直接填完整的 `/chat/completions` 地址。
+   * 示例配置：
+     * `Endpoint=OpenAICompatibleTranslate`
+     * `[OpenAICompatible]`
+     * `Url=https://your-endpoint.example`
+     * `ApiKey=your-api-key`
+     * `Model=gpt-5.5`
+     * `SystemPrompt=你是一个专业翻译器。请把源文本翻译成目标语言，只返回译文，不要解释，不要 Markdown，不要代码块。`
+     * `Temperature=0`
  * CustomTranslate。你也可以指定任意自定义 HTTP 地址作为翻译端点（GET 请求）。它必须接收 `from`、`to`、`text` 这三个查询参数，并且只返回包含结果的字符串。建议优先尝试不带 SSL 的 HTTP，因为 unity-mono 往往对 SSL 有问题。
    * *注意：这是偏开发者的选项。并不是随便填一个在线翻译服务地址就能直接用。请先看 [常见问题](#frequently-asked-questions)。*
    * 示例配置：
@@ -425,6 +437,15 @@ YandexAPIKey=                    ;可选。如果配置了 YandexTranslate，则
 Url=                             ;可选。如果配置了 WatsonTranslate，则需要
 Key=                             ;可选。如果配置了 WatsonTranslate，则需要
 
+[OpenAICompatible]
+Url=                             ;可选。如果配置了 OpenAICompatibleTranslate，则需要
+ApiKey=                          ;可选。如果配置了 OpenAICompatibleTranslate，则需要
+Model=gpt-5.5                    ;可选。要使用的模型
+SystemPrompt=你是一个专业翻译器。请把源文本翻译成目标语言，只返回译文，不要解释，不要 Markdown，不要代码块。
+Temperature=0                    ;可选。0 表示更稳定，通常范围是 0 到 2
+MaxConcurrency=1                 ;可选。单个翻译器同时发起的请求数
+MaxTranslationsPerRequest=1      ;可选。单个请求里最多合并多少条文本
+
 [DeepL]
 MinDelay=2                       ;可选，用于限制 DeepL 请求频率
 MaxDelay=7                       ;可选，用于限制 DeepL 请求频率
@@ -434,7 +455,7 @@ ApiKey=                          ;可选。如果配置了 DeepLLegitimate，则
 Free=False                       ;可选。如果配置了 DeepLLegitimate，则需要
 
 [Custom]
-Url=                             ;可选。如果配置了 CustomTranslated，则需要
+Url=                             ;可选。如果配置了 CustomTranslate，则需要
 
 [LecPowerTranslator15]
 InstallationPath=                ;可选。如果配置了 LecPowerTranslator15，则需要

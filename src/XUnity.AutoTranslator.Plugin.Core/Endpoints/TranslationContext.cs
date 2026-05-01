@@ -54,7 +54,7 @@ namespace XUnity.AutoTranslator.Plugin.Core.Endpoints
 
             for( int i = 0 ; i < translatedTexts.Length ; i++ )
             {
-               var translatedText = translatedTexts[ 0 ];
+               var translatedText = translatedTexts[ i ];
                if( string.IsNullOrEmpty( translatedText ) )
                {
                   _fail( "Received empty translation from translator.", null );

@@ -52,7 +52,7 @@ namespace Common.ExtProtocol
 
             for( int i = 0; i < translatedTexts.Length; i++ )
             {
-               var translatedText = translatedTexts[ 0 ];
+               var translatedText = translatedTexts[ i ];
                if( string.IsNullOrEmpty( translatedText ) )
                {
                   FailContext( "Received empty translation from translator.", null );
